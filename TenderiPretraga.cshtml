@@ -1,0 +1,690 @@
+﻿@using TenderWebiste.Models
+@using BIZMARK.DAL.Helpers
+@model HomePageViewModel
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+     var c = Model.Cpvs;
+}  
+<section class="main_body_contents single_article">
+    <div class="container">
+
+        <div class="wrapper-vijesti remargin">
+
+            <div class="col-md-12 kolona-aktuelno ">
+                <div class="col-xs-12 card card-lead nopadding">
+                    <div class="galerija tenderi-header">
+                        <ul class="tenderi-menu">
+                            <li class="active"><a href="#">TENDERI</a></li>
+                            <li><a href="#">DODJELE UGOVORA</a></li>
+                            <li><a href="#">OBJAVI TENDER</a></li>
+                            <li><a href="#">LEGISLATIVA</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-md-12 row-istih-visina nopadding">
+                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 card ">
+                    <div class="card-opis-vijesti">
+                        <h1 class="card-naslov-vijesti">Pretraga tendera</h1>
+                        <p><b>Izaberete kategoriju i kriterije za prikaz objavljenih tendera kako biste našli odgovarajuće tendere. </b>
+                            <br>Izaberite prvo kategoriju djelatnosti, a odmah ispod imate i dodatne koje vam mogu olakšati pretragu. Polje "Naziv" nije obavezno, ali Vam može pomoći prilikom sužavanja izbora. Željeni tenderi biće prikazani ispod
+                            forme za pretragu.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 card ">
+                    <div class=" footer-cta tenderi-footer-cta tenderi-pretraga-widget">
+                        <h1>Najsvježija lista tendera <span>dostupna je samo registrovanim korisnicima.</span></h1>
+                        <a class="footer-cta-button">TESTIRAJ BESPLATNO</a>
+                    </div>
+                </div>
+            </div>
+              <form action="@Url.Action("SearchResult")" method="POST">
+            <div class="col-xs-12 col-md-12 pretraga-tendera-form">
+                <h1 class="card-naslov-vijesti">Kategorije tendera</h1>
+                <div class="red-kategorija remargin  form-group has-feedback">
+                    <div class="col-xs-12 col-sm-6 col-md-2 kategorija-tendera">
+                        <div>
+                            <p class="obrazovanje" >Obrazovanje</p>
+                          @Html.CheckBox("ind_276", new{@hidden="hidden", value=276})
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-6 col-md-2 kategorija-tendera">
+                        <div>
+                            <p class="energetika">Energetika</p>
+                                  @Html.CheckBox("ind_258", new{@hidden="hidden", value=258})
+                           
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-6 col-md-2 kategorija-tendera">
+                        <div>
+                            <p class="hemija">Hemijski proizvodi</p>
+                               @Html.CheckBox("ind_263", new{@hidden="hidden", value=263})
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-6 col-md-2 kategorija-tendera">
+                        <div>
+                            <p class="gradevina">Građevina i nekretnine</p>
+                              @Html.CheckBox("ind_260", new{@hidden="hidden", value=260})
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-6 col-md-2 kategorija-tendera">
+                        <div>
+                            <p class="zdravstvo">Zdravstvo</p>
+                              @Html.CheckBox("ind_265", new{@hidden="hidden", value=265})
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-6 col-md-2 kategorija-tendera">
+                        <div>
+                            <p class="poljop">Poljoprivreda i mehanizacija</p>
+                             @Html.CheckBox("ind_257", new{@hidden="hidden", value=257})
+                        </div>
+                    </div>
+                </div>
+                <div class="red-kategorija remargin">
+                    <div class="col-xs-12 col-sm-6 col-md-2 kategorija-tendera">
+                        <div>
+                            <p class="tekstil">Tekstil i asesoari</p>
+                             @Html.CheckBox("ind_261", new{@hidden="hidden", value=261})
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-6 col-md-2 kategorija-tendera">
+                        <div>
+                            <p class="okolis">Zaštita okoliša, sanitarne i komunalne usluge</p>
+                             @Html.CheckBox("ind_267", new{@hidden="hidden", value=267})
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-6 col-md-2 kategorija-tendera">
+                        <div>
+                            <p class="sport">Sport, kultura, umjetnost</p>
+                             @Html.CheckBox("ind_262", new{@hidden="hidden", value=262})
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-6 col-md-2 kategorija-tendera">
+                        <div>
+                            <p class="telekom">Telekomunikacije</p>
+                             @Html.CheckBox("ind_270", new{@hidden="hidden", value=270})
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-6 col-md-2 kategorija-tendera">
+                        <div>
+                            <p class="it">IT i uredska oprema</p>
+                             @Html.CheckBox("ind_268", new{@hidden="hidden", value=268})
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-6 col-md-2 kategorija-tendera">
+                        <div>
+                            <p class="elektronika">Elektronika</p>
+                               @Html.CheckBox("ind_271", new{@hidden="hidden", value=271})
+                        </div>
+                    </div>
+                </div>
+                <div class="red-kategorija remargin">
+                    <div class="col-xs-12 col-sm-6 col-md-2 kategorija-tendera">
+                        <div>
+                            <p class="istrazivanje">Istraživanje i razvoj, poslovne usluge</p>
+                               @Html.CheckBox("ind_278", new{@hidden="hidden", value=278})
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-6 col-md-2 kategorija-tendera">
+                        <div>
+                            <p class="namjestaj">Namještaj i aparati</p>
+                              @Html.CheckBox("ind_273", new{@hidden="hidden", value=273})
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-6 col-md-2 kategorija-tendera">
+                        <div>
+                            <p class="rudarstvo">Rudarstvo i metali</p>
+                              @Html.CheckBox("ind_259", new{@hidden="hidden", value=259})
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-6 col-md-2 kategorija-tendera">
+                        <div>
+                            <p class="transport">Transport</p>
+                              @Html.CheckBox("ind_274", new{@hidden="hidden", value=274})
+
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-6 col-md-2 kategorija-tendera">
+                        <div>
+                            <p class="industrija">Industrija</p>
+                              @Html.CheckBox("ind_272", new{@hidden="hidden", value=272})
+
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-6 col-md-2 kategorija-tendera">
+                        <div>
+                            <p class="turizam">Turizam</p>
+                             @Html.CheckBox("ind_279", new{@hidden="hidden", value=279})
+                        </div>
+                    </div>
+                </div>
+                <div class="red-kategorija remargin">
+                    <div class="col-xs-12 col-sm-6 col-md-2 kategorija-tendera">
+                        <div>
+                            <p class="stamparije">Štamparije i izdavaštvo</p>
+                             @Html.CheckBox("ind_264", new{@hidden="hidden", value=264})
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-6 col-md-2 kategorija-tendera">
+                        <div>
+                            <p class="finansije">Finansije i osiguranje</p>
+                                 @Html.CheckBox("ind_281", new{@hidden="hidden", value=281})
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-6 col-md-2 kategorija-tendera">
+                        <div>
+                            <p class="odbrana">Odbrana, sigurnost i javna uprava</p>
+                             @Html.CheckBox("ind_266", new{@hidden="hidden", value=266})
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-6 col-md-2 kategorija-tendera">
+                        <div>
+                            <p class="ostalo">Ostalo</p>
+                              @Html.CheckBox("ind_284", new{@hidden="hidden", value=284})
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-xs-12 col-md-12 pretraga-tendera-form">
+                <h1 class="card-naslov-vijesti">Brza pretraga tendera</h1>
+                <div class="red-kategorija remargin">
+                    <div class="col-xs-12 col-sm-6 col-md-2 kategorija-tendera brza">
+                        <div>
+                            <p>NABAVKE</p>
+                            @Html.CheckBox("ws_A", new{@hidden="hidden", @value="A"})
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-6 col-md-2 kategorija-tendera brza">
+                        <div>
+                            <p>IZMJENE</p>
+                              @Html.CheckBox("ws_F", new{@hidden="hidden", value="(izmjena"})
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-6 col-md-2 kategorija-tendera brza">
+                        <div>
+                            <p>PONIŠTENJA</p>
+                            @Html.CheckBox("ws_C", new{@hidden="hidden", value="(poništenja"})
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-6 col-md-2 kategorija-tendera brza">
+                        <div>
+                            <p>EU i MEĐUNARODNI TENDERI</p>
+                                 @Html.CheckBox("ws_4", new{@hidden="hidden", value="4|(HR)|(MK)|D|(MNE)|(SRB)|(SL)"})
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-6 col-md-2 kategorija-tendera brza">
+                        <div>
+                            <p>PRODAJA POTRAŽIVANJA</p>
+                              @Html.CheckBox("ws_60", new{@hidden="hidden", value="60"})
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-6 col-md-2 kategorija-tendera brza">
+                        <div>
+                            <p>Licitacije/nekretnine</p>
+                              @Html.CheckBox("ws_57", new{@hidden="hidden", value="57|46"})
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-6 col-md-2 kategorija-tendera brza">
+                        <div>
+                            <p>Javni pozivi,<br> konkursi, oglasi</p>
+                                   @Html.CheckBox("ws_50", new{@hidden="hidden", value="Javni poziv|konkurs|oglas|50"})
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-6 col-md-2 kategorija-tendera brza">
+                        <div>
+                            <p>Privatizacije, berze</p>
+                              @Html.CheckBox("ws_48", new{@hidden="hidden", value="48"})
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-6 col-md-2 kategorija-tendera">
+                        <div>
+                            <p>Skupštine</p>
+                               @Html.CheckBox("ws_59", new{@hidden="hidden", value="48|59"})
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-6 col-md-2 kategorija-tendera brza">
+                        <div>
+                            <p>Regulacioni planovi</p>
+                               @Html.CheckBox("ws_56", new{@hidden="hidden", value="56|regulacion%plan|urban%plan"})
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-6 col-md-2 kategorija-tendera brza">
+                        <div>
+                            <p>Stečaj <br>- prodaja imovine <br>- kompanije u stečaju</p>
+                               @Html.CheckBox("ws_stecaj", new{@hidden="hidden", value="15|58|49"})
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-6 col-md-2 kategorija-tendera brza">
+                        <div>
+                            <p>Odluke o pokretanju postupaka
+                            </p>
+                               @Html.CheckBox("ws_Odluke", new{@hidden="hidden", value="Odluka o pokretanju postupka"})
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-6 col-md-2 kategorija-tendera brza">
+                        <div>
+                            <p>Plan nabavki</p>
+                             @Html.CheckBox("ws_54", new{@hidden="hidden", value="54|(najava"})
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 card card-newsletter card-vijest konvertor-valuta pretraga-tendera-form">
+                <div class="card-opis-vijesti ">
+                    <div class="col-md-10 col-md-push-1 col-xs-12">
+                        <div class="form-group has-feedback">
+                            <div class="col-sm-3" style="padding-right:0;">
+                                <input type="text" class="form-control" placeholder="Naziv" name="Title">
+                            </div>
+                            <div class="col-sm-3">
+                                <input type="text" class="form-control" placeholder="Broj tendera" name="Number">
+                            </div>
+                            <div class="col-sm-3  grupa ">
+                                <input type="text" id='datetimepicker1-tp' class="form-control datepick akordion-input" placeholder="Datum objave (Od):" name="PublishDateFrom">
+                            </div>
+                            <div class="col-sm-3  grupa">
+                                <input type="text" id='datetimepicker2-tp' class="form-control datepick akordion-input" placeholder="Datum objave (Do):" name="PublishDateTo">
+                            </div>
+                            <div class="col-sm-3">
+                                <span class="form-control-feedback valuebox">
+                                    <i class="val fa fa-caret-up" aria-hidden="true"></i>
+                                    <i class="val fa fa-caret-down" aria-hidden="true"></i>
+                                </span>
+                                <select class="form-control" placeholder="Važenje Tendera" name="Duration">
+                                    <option value="svi">Svi</option>
+                                    <option value="vazeci">Važeći</option>
+                                    <option value="istekli">Istekli</option>
+                                </select>
+                            </div>
+                            <div class="col-sm-3  grupa ">
+                                <input type="text" id='datetimepicker1-dp' class="form-control datepick akordion-input" placeholder="Datum predaje (Od):" name="ValidDateFrom">
+                            </div>
+                            <div class="col-sm-3  grupa">
+                                <input type="text" id='datetimepicker2-dp' class="form-control datepick akordion-input" placeholder="Datum predaje (Do):" name="ValidDateTo" >
+                            </div>
+                            @Html.Hidden("CompaniesAutoCompleteUrl" , @Url.Action("GetAutoCompeleteCompanies", "Home"), new {name=""})
+                            <div class="col-sm-3 typeahedDrop typeahead-container" style="padding-right:0;">
+                                <div class="typeahead__field">
+                                    <span class="typeahead__query ">
+                                        <input class="form-control typeahead"   id="requester" type="search" autocomplete="off" data-provide="typeahead" style=" z-index: 1051;" placeholder="Naziv firme / ID broj"></span>
+                                    <input type="hidden" value="" name="searchrequesterId" id="searchrequesterId">
+                                </div></div>
+                            <div class="col-sm-3 typeahedDrop">
+                                <span class="form-control-feedback valuebox">
+                                    <i class="val fa fa-caret-up" aria-hidden="true"></i>
+                                    <i class="val fa fa-caret-down" aria-hidden="true"></i>
+                                </span>
+                                <input id="cpv" class="form-control typeahead" placeholder="CPV/JRJN"  type="search" autocomplete="off" data-provide="typeahead" style=" z-index: 1051;">
+                                <input type="hidden" value="" name="searchCpvCodeId" id="searchCpvCodeId">
+                            </div>
+                            <div class="col-sm-3" id="country">
+                                <span class="form-control-feedback valuebox">
+                                    <i class="val fa fa-caret-up" aria-hidden="true"></i>
+                                    <i class="val fa fa-caret-down" aria-hidden="true"></i>
+                                </span>
+                                <select class="form-control" placeholder="Država" name="Country">
+                                    @* <option value="država" disabled selected>Država</option>*@
+                                    <option value="bih" selected="selected">BiH</option>
+                                    <option value="ostale">Ostale</option>
+                                    <option value="sve">Sve</option>
+                                </select>
+                            </div>
+                            @Html.Hidden("TeritoriesAutocompleteUrl" , @Url.Action("GetTeritoriesAutocomplete", "Home"), new {name=""})
+                            <div class="col-sm-3 typeahedDrop typeahead-container">
+                                <div class="typeahead__field">
+                                    <span class="typeahead__query ">
+                                        <input id="teritory" class="form-control typeahead" placeholder="Teritorija"  type="search" autocomplete="off" data-provide="typeahead" style=" z-index: 1051;" /> </span>
+                                    <input type="hidden" value="" name="searchTeritoryId" id="searchTeritoryId"> </div>
+                            
+                            </div>
+                            <div class="col-sm-12">
+                                <div id="vrijednost-tp">
+                                    <label class="cek">
+                                        <p>
+                                            <label for="amount">Vrijednost:</label>
+                                            <input type="text" id="amount" name="ammount"/>
+                                        </p>
+                                        <div id="slider-range"></div>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-sm-3 ">
+                                <span class="form-control-feedback valuebox">
+                                    <i class="val fa fa-caret-up" aria-hidden="true"></i>
+                                    <i class="val fa fa-caret-down" aria-hidden="true"></i>
+                                </span>
+                                <select class="form-control" placeholder="Tip" name="Type">
+                                    <option value="Tip" disabled selected>Tip</option>
+                                    <option value="pounda">Ponuda</option>
+                                    <option value="potraznja">Potražnja</option>
+                                    <option value="sve">Sve</option>
+                                </select>
+                            </div>
+                            <div class="col-sm-3 ">
+                                <span class="form-control-feedback valuebox">
+                                    <i class="val fa fa-caret-up" aria-hidden="true"></i>
+                                    <i class="val fa fa-caret-down" aria-hidden="true"></i>
+                                </span>
+                                <select class="form-control" placeholder="Vrsta ugovora" name="ContractType">
+                                    <option value="ugovor" disabled selected>Vrsta ugovora</option>
+                                    <option value="Robe">Robe</option>
+                                    <option value="Usluge">Usluge</option>
+                                    <option value="Radovi">Radovi</option>
+                                </select>
+                            </div>
+                            <div class="col-sm-3 ">
+                                <span class="form-control-feedback valuebox">
+                                    <i class="val fa fa-caret-up" aria-hidden="true"></i>
+                                    <i class="val fa fa-caret-down" aria-hidden="true"></i>
+                                </span>
+                                <select class="form-control" placeholder="Vrsta obavještenja" name="announcmenttype">
+                                    <option value="Tip" selected disabled>Vrsta obavještenja:</option>
+                                    <option value="Obavještenje o nabavci">Obavještenje o nabavci</option>
+                                    <option value="Obavještenje o konkurentskom postupku">Obavještenje o konkurentskom postupku</option>
+                                    <option value="Obavještenje o dodjeli ugovora">Obavještenje o dodjeli ugovora</option>
+                                    <option value="Obavještenje o nabavci - međunarodno obavještenje">Obavještenje o nabavci - međunarodno obavještenje</option>
+                                    <option value="Aukcija">Aukcija</option>
+                                    <option value="Ispravka obavještenja">Ispravka obavještenja</option>
+                                    <option value="Obavještenje o poništenju postupka">Obavještenje o poništenju postupka</option>
+                                    <option value="Direktni sporazum">Direktni sporazum</option>
+                                    <option value="Pregovarački sporazum">Pregovarački sporazum</option>
+                                           
+                                </select>
+
+
+                            </div>
+
+
+                        </div>
+
+                        <div class="col-sm-12">
+                            <a href="#" class="card-button" style="margin-right:auto;text-align: center;    margin-top: 30px;" onclick="$(this).closest('form').submit()">
+                                <span class="card-button-tekst" style="font-size: x-large;">Pretraži</span></a>
+                        </div>
+                       
+                    </div>
+                </div>
+            </div>
+           </form>
+        </div>
+
+
+        <div class="hidden-xs ads">
+            <img class="img-responsive" src="http://placehold.it/1250x130?text=Place for ads.">
+        </div>
+        <div class="wrapper-vijesti remargin">
+            <div class="col-xs-12 col-sm-12 col-md-6 card ">
+                <div id="exTabNajTenderi" class="tabs_module firmeVijesti tenderi-tabs">
+                    <ul class="nav nav-pills tabs">
+                        <li class="active">
+                            <a href="#najnovijitenderi" data-toggle="tab">Najnoviji tenderi</a>
+                        </li>
+                        <li>
+                            <a href="#najcitanijitenderi" data-toggle="tab">Najčitaniji tenderi</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content clearfix">
+                        <div class="tab-pane active" id="najnovijitenderi">
+                            <div class="card-opis-vijesti">
+                                <div class="col-xs-12">
+                                    @foreach (var tender in Model.MostRecentList)
+                                    {
+                                        <li>
+                                            <p class="card-kategorija tender-lista tender-lista-datum">   @(tender.PublishDate.HasValue?""+tender.PublishDate.Value.ToShortDateString()+"":"")  </p>
+                                            <p class="card-kategorija tender-lista sa-datumima"><a style="color:red" href="http://localhost:15941/@tender.TenderTitleUrl/@tender.TenderId">@tender.TenderTitle</a> </p>
+                                            <p class="card-kategorija tender-lista tender-lista-datum-vazenja">  @(tender.ValidTo.HasValue?"(važi do "+tender.ValidTo.Value.ToShortDateString()+")":"") </p>
+                                        </li>
+                                    }
+                                       
+                                </div>
+                                <div class="col-xs-12">
+                                    <a class="viseVijesti">VIŠE +</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane" id="najcitanijitenderi">
+                            <div class="card-opis-vijesti">
+                                <div class="col-xs-12">
+                                    @foreach (var tender in Model.MostReadList)
+                                    {
+                                        <li>
+                                            <p class="card-kategorija tender-lista tender-lista-datum">   @(tender.PublishDate.HasValue?""+tender.PublishDate.Value.ToShortDateString()+"":"")  </p>
+                                            <p class="card-kategorija tender-lista sa-datumima"><a style="color:green" href="http://localhost:15941/@tender.TenderTitleUrl/@tender.TenderId">@tender.TenderTitle</a> </p>
+                                            <p class="card-kategorija tender-lista tender-lista-datum-vazenja">  @(tender.ValidTo.HasValue?"(važi do "+tender.ValidTo.Value.ToShortDateString()+")":"") </p>
+                                        </li>
+                                    }
+                                       
+                                </div>
+                                <div class="col-xs-12">
+                                    <a class="viseVijesti">VIŠE +</a>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-6 card ">
+                <div id="exTabFirmeiVijesti" class="tabs_module firmeVijesti tenderi-tabs">
+                    <ul class="nav nav-pills tabs">
+                        <li class="active">
+                            <a href="#najvrijednijitenderi" data-toggle="tab">Tenderi sa najvećom vrijednošću</a>
+                        </li>
+                        <li>
+                            <a href="#kratkiroktenderi" data-toggle="tab">Tenderi sa kratkim rokom</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content clearfix">
+                        <div class="tab-pane active" id="najvrijednijitenderi">
+                            <div class="card-opis-vijesti">
+                                <div class="col-xs-12">
+                                    @foreach (var tender in Model.HighestContractValueList)
+                                    {
+                                        <li>
+                                            <p class="card-kategorija tender-lista tender-lista-datum">   @(tender.PublishDate.HasValue?""+tender.PublishDate.Value.ToShortDateString()+"":"")  </p>
+                                            <p class="card-kategorija tender-lista sa-datumima"><a style="color:purple" href="http://localhost:15941/@tender.TenderTitleUrl/@tender.TenderId">@tender.TenderTitle</a> </p>
+                                            <p class="card-kategorija tender-lista tender-lista-datum-vazenja">  @(tender.ValidTo.HasValue?"(važi do "+tender.ValidTo.Value.ToShortDateString()+")":"")@(tender.ContractValue >0?"(vrijednost ugovora "+tender.ContractValue.ToString("C")+")":"") </p>
+                                        </li>
+                                    }
+                                           
+                                      
+                                </div>
+                                <div class="col-xs-12">
+                                    <a class="viseVijesti">VIŠE +</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane" id="kratkiroktenderi">
+                            <div class="card-opis-vijesti">
+                                <div class="col-xs-12">
+                                    @foreach (var tender in Model.ShortDaedlineList)
+                                    {
+                                        <li>
+                                            <p class="card-kategorija tender-lista tender-lista-datum">   @(tender.PublishDate.HasValue?""+tender.PublishDate.Value.ToShortDateString()+"":"")  </p>
+                                            <p class="card-kategorija tender-lista sa-datumima"><a style="color:yellowgreen" href="http://localhost:15941/@tender.TenderTitleUrl/@tender.TenderId">@tender.TenderTitle</a> </p>
+                                            <p class="card-kategorija tender-lista tender-lista-datum-vazenja">  @(tender.ValidTo.HasValue?"(važi do "+tender.ValidTo.Value.ToShortDateString()+")":"") </p>
+                                        </li>
+                                    }
+                                       
+                                </div>
+
+                                <div class="col-xs-12">
+                                    <a class="viseVijesti">VIŠE +</a>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+
+</section>
+@*<script src="~/Scripts/typeahead.bundle.js"></script>*@
+<script src="~/Scripts/bootstrap3-typeahead.js"></script>
+        @*<script src="~/Scripts/Gruntfile.js"></script>*@
+         <script src="~/Scripts/bootstrap3-typeahead.min.js"></script>
+<script type="text/javascript">
+   
+    var cps = '@Html.Raw(Json.Encode(Model.Cpvs))';
+    var cpvs = $.parseJSON(cps);
+    cpvs.map(function (element) {
+        return { id: element['id'], name: element['name'] };
+    });
+        //var data = ;
+        var $input = $("#cpv");
+        $input.typeahead({
+            name: 'cpvs',
+            source: cpvs,
+            autoSelect: true,
+            items: 15,
+            minLength: 1,
+           updater: function(item) {
+                var name = item.name;
+                console.log(name);
+                $("#searchCpvCodeId").val(item.id);
+         
+                return name;
+            }
+        });
+       
+        $input.change(function() {
+            var current = $input.typeahead("getActive");
+            if (current) {
+                // Some item from your model is active!
+                if (current.name == $input.val()) {
+                    //console.log(current.id);
+                    //console.log(current.name);
+                    $input.val(current.name);
+                    $("#searchCpvCodeId").val(current.id);
+                } else {
+                    $input.val(current.name);
+                    //console.log(current.name);
+                    $("#searchCpvCodeId").val(current.id);
+                }
+            } else {
+                $("#cpv").val('');
+                $("#searchCpvCodeId").val('');
+                $input.typeahead('setQuery', '');
+            }
+        });
+
+
+    var url = $("#TeritoriesAutocompleteUrl").val();
+    var country = $("#country").find("select").val();
+    $("#country").on("change", function () { $("#teritory").val('');
+        country = $(this).find("select").val();
+    });
+    console.log(country);
+    var $input2 = $("#teritory");
+  
+        $input2.typeahead({
+            name: 'trts',
+            source: function (query, process) {
+               
+                return $.getJSON(url, {
+                    term: query, country: country
+                },function (data) {
+                    var trst = data;
+                    trst.map(function (element) {
+                        return { id: element['id'], name: element['name'] };
+                    });
+
+                    return process(trst);
+                });
+            },
+            autoSelect: true,
+            items: 10,
+            minLength: 1,
+            updater: function (item) {
+                var name = item.name;
+                console.log(name);
+                $("#searchTeritoryId").val(item.id);
+              
+                return name;
+            }
+        });
+   
+   
+
+    $input2.change(function () {
+        var current = $input2.typeahead("getActive");
+            if (current) {
+                // Some item from your model is active!
+                if (current.name == $input2.val()) {
+                    //console.log(current.id);
+                    //console.log(current.name);
+                    $("#searchTeritoryId").val(current.id);
+                } else {
+                    //console.log(current.name);
+                    $("#searchTeritoryId").val(current.id);
+                }
+            } else {
+                $("#teritory").val('');
+                $("#searchTeitoryId").val('');
+                $input2.typeahead('setQuery', '');
+            }
+    });
+    var url2 = $("#CompaniesAutoCompleteUrl").val();
+   
+    var $input3 = $("#requester");
+
+    $input3.typeahead( {
+        name: 'requesters',
+        source: function (query, process) {
+            return $.getJSON(url2, {
+                term: query.toLowerCase()
+            }, function (data) {
+                var reqs = data;
+                reqs.map(function (element) {
+                    return { id: element['id'], name: element['name'] };
+                });
+                console.log(reqs);
+                return process(reqs);
+            });
+        },
+        autoSelect: false,
+        items: 10,
+        minLength: 1,
+        matcher:  function(item) {
+            return true;
+        },
+       
+        updater: function (item) {
+            var name = item.name;
+            console.log(name);
+            $("#searchrequesterId").val(item.id);
+
+            return name;
+        }
+    });
+    $input3.change(function () {
+        var current = $input3.typeahead("getActive");
+        if (current) {
+            if (current.name == $input3.val()) {
+                //console.log(current.id);
+                //console.log(current.name);
+                $("#searchrequesterId").val(current.id);
+            } else {
+                console.log(current.name);
+                $("#searchrequesterId").val(current.id);
+            }
+             
+            }
+         else {
+            $("#searchrequesterId").val('');
+          
+        }
+    });
+    $(document).ready(function() {
+        $("ul.typeahead").css("background-color", "white").css("color", "black").css("font-size", "14px");
+    });
+</script>
